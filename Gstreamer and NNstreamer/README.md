@@ -53,7 +53,9 @@ sudo apt install \
 5. Add the nnstreaner in GST_PLUGIN_PATH
       export GST_PLUGIN_PATH="${GST_PLUGIN_PATH:+$GST_PLUGIN_PATH:}$HOME/codes/nnstreamer/build/gst/nnstreamer"
 
-6. Verify subplugin libraries were generated
+(Please note that codes/nnstreamer is the directory where I have cloned my nnstreamer, you can replace this with your directory)
+
+7. Verify subplugin libraries were generated
       find build/ext/nnstreamer/tensor_filter -name "*.so"
    
    You should see things like below, which means TensorFlow Lite support was successfully built ->
@@ -61,7 +63,7 @@ sudo apt install \
    libnnstreamer_filter_tensorflow2-lite.so
    libnnstreamer_filter_tvm.so
 
-7. Tell NNStreamer where the config file is ->
+8. Tell NNStreamer where the config file is ->
    i. NNStreamer generates: build/nnstreamer.ini
 
    ii. Export:
@@ -70,7 +72,7 @@ sudo apt install \
    iii Without this: Error like -> Failed to load configuration, no config file found and framework subplugins won't be discovered.
 
 
-8. Tell NNStreamer where subplugins are ->
+9. Tell NNStreamer where subplugins are ->
 
    i. For source builds: 
 
@@ -80,10 +82,10 @@ sudo apt install \
 
       export NNSTREAMER_CONVERTERS=$HOME/codes/nnstreamer/build/ext/nnstreamer/tensor_converter
 
-9. Rebuild GStreamer registry ->
+10. Rebuild GStreamer registry ->
       rm -f ~/.cache/gstreamer-1.0/registry.*
 
-10. Verify tensor_filter frameworks ->
+11. Verify tensor_filter frameworks ->
    i. Run:  gst-inspect-1.0 tensor_filter
 
    ii. Look for below which confirms everything is loaded correctly:
